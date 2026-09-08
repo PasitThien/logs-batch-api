@@ -2,7 +2,7 @@
 This API provided for logs retrival from database which would stored as tables
 
 ## APIs
-### 1. get-all-summarized-reports           
+### 1. get-all-summarized-logs          
 Request body:
 ```JSON
 {

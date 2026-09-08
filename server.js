@@ -16,7 +16,7 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
 
-app.get("/get-all-summarized-reports", (req, res) => {
+app.get("/get-all-summarized-logs", (req, res) => {
     try {        
         if (!req.body || req.body.dateIp === "" || req.body.dateIp === undefined) {
             return res.status(400).json({
