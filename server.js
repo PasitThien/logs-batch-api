@@ -207,33 +207,31 @@ const mockupGetAllSummarizedLogResponse = [
     }   
 ]
 
-
-
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
 
 app.get("/get-all-summarized-logs", (req, res) => {
-    try {        
-        if (!req.body || req.body.dateIp === "" || req.body.dateIp === undefined) {
+    try {       
+        if (!req.query || req.query.dateIp === "" || req.query.dateIp === undefined) {
             return res.status(400).json({
                 status: "error",
                 message: "Invalid request body, dateIp are required" 
             });
         }
 
-        // const resultsData =  dbLogServices.getLogsByDate(req.body.dateIp);
+        // const resultsData =  dbLogServices.getLogsByDate(req.query.dateIp);
         // let response = {
-        //     dateIp: req.body.dateIp,
+        //     dateIp: req.query.dateIp,
         //     results: resultsData
         // };
         // res.status(200).json(response);
 
         // Mockup response
         const responseRaw = mockupGetAllSummarizedLogResponse.find(
-            (dateList) => dateList.dateIp === req.body.dateIp
+            (dateList) => dateList.dateIp === req.query.dateIp
         );
-        let response = !responseRaw ? { ...mockupEmptyLogs, dateIp: req.body.dateIp }: responseRaw.responseBodyMock;
+        let response = !responseRaw ? { ...mockupEmptyLogs, dateIp: req.query.dateIp }: responseRaw.responseBodyMock;
         res.status(200).json(response);
     } catch(error) {
         res.status(500).json(
